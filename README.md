@@ -116,42 +116,42 @@ This project implements a complete microservices architecture with:
    ```bash
    cd auth-service
    pip install -r requirements.txt
-   python app/main.py
+   uvicorn app.main:app --reload --port 8001
    ```
 
    **User Service:**
    ```bash
    cd user-service
    pip install -r requirements.txt
-   python app/main.py
+   uvicorn app.main:app --reload --port 8002
    ```
 
    **Search Service:**
    ```bash
    cd search-service
    pip install -r requirements.txt
-   python app/main.py
+   uvicorn app.main:app --reload --port 8003
    ```
 
    **Image Service:**
    ```bash
    cd image-service
    pip install -r requirements.txt
-   python app/main.py
+   uvicorn app.main:app --reload --port 8004
    ```
 
    **Dashboard Service:**
    ```bash
    cd dashboard-service
    pip install -r requirements.txt
-   python app/main.py
+   uvicorn app.main:app --reload --port 8005
    ```
 
    **API Gateway:**
    ```bash
    cd api-gateway
    pip install -r requirements.txt
-   python app/main.py
+   uvicorn app.main:app --reload --port 8000
    ```
 
 #### Frontend
@@ -253,19 +253,6 @@ cd frontend
 npm test
 ```
 
-## Environment Variables
-
-Create `.env` files in each service directory with:
-
-```env
-DATABASE_URL=postgresql://postgres:1974@localhost:5432/mindcanvas_micro
-REDIS_URL=redis://localhost:6379
-KAFKA_BOOTSTRAP_SERVERS=localhost:9092
-SECRET_KEY=your-secret-key
-TAVILY_API_KEY=54945398-acdb-4b35-975e-595c7fa33ed1
-TAVILY_PROFILE=excess-booby-2DGYu0
-FLUX_API_KEY=54945398-acdb-4b35-975e-595c7fa33ed1
-```
 
 ## Monitoring and Logging
 
@@ -294,34 +281,3 @@ FLUX_API_KEY=54945398-acdb-4b35-975e-595c7fa33ed1
 - Redis caching for improved performance
 - Kafka for asynchronous processing
 - Docker containers for easy deployment
-
-## Development
-
-### Adding New Services
-
-1. Create service directory with standard structure
-2. Add to `docker-compose.yml`
-3. Update API Gateway routes
-4. Add service-specific environment variables
-5. Implement health check endpoint
-6. Add appropriate tests
-
-### Database Migrations
-
-```bash
-cd [service-directory]
-alembic revision --autogenerate -m "Description"
-alembic upgrade head
-```
-
-## Contributing
-
-1. Fork the repository
-2. Create a feature branch
-3. Implement changes with tests
-4. Update documentation
-5. Submit pull request
-
-## License
-
-This project is licensed under the MIT License.
